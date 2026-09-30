@@ -4,6 +4,19 @@ Rule-based pipeline that matches Source-1 business records to Source-2/3 records
 across ~10M rows, using only the Python standard library. It runs in about
 8 minutes, with peak memory under 1GB.
 
+## Problem
+
+Given business records from three independent sources with no shared IDs,
+find which Source-2/3 records refer to the same real-world business as each
+Source-1 entity. The records are noisy: abbreviations, typos, legal-suffix
+differences, transliterations, and missing or partial addresses. The dataset
+has ~10M records across the US, India, and France (France appears only in the
+test set).
+
+Scoring is macro-averaged F0.5, which weights precision over recall, so a
+false merge costs more than a missed match. Singletons (entities with no
+matches) count in the average.
+
 ## Results
 
 | version | train macro F0.5 | leaderboard |
@@ -26,6 +39,16 @@ Final rank: ~5000 of 89,396 registrations (roughly the top 6% of registrants).
    All thresholds were grid-searched against ground truth.
 
 Full details, tuning sweeps and the bug log are in [METHODOLOGY.md](METHODOLOGY.md).
+
+## Tech stack
+
+| Area | Tools |
+|---|---|
+| Language | Python 3.10+ |
+| Shipped pipeline | Standard library only: `sqlite3`, `csv`, `re`, `argparse` |
+| Notebook (untested) | pandas, NumPy, scikit-learn (`HistGradientBoostingClassifier`), rapidfuzz, Google Colab |
+| Techniques | Blocking, text normalization, disk-backed indexing, rule-based filtering, grid search |
+| Evaluation | Macro F0.5, scored locally against ground truth |
 
 ## Run it
 
