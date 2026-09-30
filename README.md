@@ -24,7 +24,7 @@ matches) count in the average.
 | v1 | 0.4289 | 0.435 |
 | v2 | **0.5918** | **0.557** |
 
-Final rank: ~5000 of 89,396 registrations (roughly the top 6% of registrants).
+Public leaderboard rank: 5190 of 89,396 registrations (roughly the top 6% of registrants).
 
 ## Approach
 
@@ -40,6 +40,8 @@ Final rank: ~5000 of 89,396 registrations (roughly the top 6% of registrants).
 
 Full details, tuning sweeps and the bug log are in [METHODOLOGY.md](METHODOLOGY.md).
 
+No external data, APIs, or lookups are used.
+
 ## Tech stack
 
 | Area | Tools |
@@ -53,6 +55,7 @@ Full details, tuning sweeps and the bug log are in [METHODOLOGY.md](METHODOLOGY.
 ## Run it
 
 ```bash
+mkdir -p work
 python3 code/business_entity_resolution/src/01_build_index.py \
     /path/to/test_source2.tsv /path/to/test_source3.tsv work/index.db
 
