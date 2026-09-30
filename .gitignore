@@ -1,0 +1,28 @@
+# ── Output files (too large for GitHub; regenerate with the steps in README) ──
+output/*.tsv
+
+# ── Competition dataset files ──
+train_*.tsv
+test_*.tsv
+
+# ── Database / index files ──
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+.ipynb_checkpoints/
+
+# ── Virtual environments ──
+.venv/
+venv/
+env/
+.env
+
+# ── OS junk ──
+.DS_Store
+Thumbs.db
+desktop.ini
